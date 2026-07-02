@@ -1,0 +1,6 @@
+# ssh configration to connect to server using only key based authentication
+Host myserver
+    HostName 3.85.50.100
+    User ubuntu
+    IdentityFile school
+    PasswordAuthentication no
