@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
-# Configure nginx to redirect '/redirect_me' to youtube using 301
+#Configure your Nginx server so that /redirect_me is redirecting to another page
+sudo apt-get update -y
+sudo apt-get install -y nginx
 
-sudo apt update -y
-sudo apt install -y nginx
+sudo mkdir /etc/nginx/html
+sudo touch /etc/nginx/html/index.html
 
+#sudo ufw allow 'Nginx HTTP'
 config=\
 "server {
         listen 80 default_server;
@@ -19,8 +22,8 @@ config=\
 	}
 }
 "
-echo "Holberton School for the win!" > /var/www/html/index.html
+sudo chown -R "$USER":"$USER" /var/www/html/index.html
+sudo chown -R "$USER":"$USER" /etc/nginx/sites-available/default
+echo "Holberton School" > /var/www/html/index.html
 echo "$config" > /etc/nginx/sites-available/default
-
-sudo nginx -t
 sudo service nginx restart
